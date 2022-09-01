@@ -1,0 +1,34 @@
+overwrite: true
+schema: schema.graphql
+documents: src/**/*.graphql
+generates:
+  src/generated/schema.ts:
+    plugins:
+      - add:
+          content: 'export const schema = `'
+      - add:
+          placement: append
+          content: '`'
+      - schema-ast
+  src/generated/index.ts:
+    plugins:
+      - add:
+          content:
+            - 'export * from "./schema"'
+            - 'export * from "./gqlTypes"'
+
+  src/generated/gqlTypes.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - named-operations-object
+      - typescript-react-query
+    config:
+      fetcher:
+        endpoint: 'http://localhost:3000/graphql'
+      skipTypename: true
+      useTypeImports: true
+      immutableTypes: true
+      preResolveTypes: true
+      namingConvention:
+        transformUnderscore: true

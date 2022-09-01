@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import {useGetTodosQuery} from "./generated";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const {data, error, isFetching} = useGetTodosQuery()
+    console.log({data}) // {data:{todos: []}}
+
+    const [count, setCount] = useState(0)
 
   return (
     <div className="App">

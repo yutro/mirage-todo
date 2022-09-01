@@ -1,10 +1,10 @@
 import { createGraphQLHandler } from "@miragejs/graphql";
 import { Server } from "miragejs";
-import { graphQLSchema } from "../schema";
+import {schema} from "../generated";
 
 export const mockServer = new Server({
 	routes() {
-		this.post("/graphql", createGraphQLHandler(graphQLSchema, this.schema));
+		this.post("/graphql", createGraphQLHandler(schema, this.schema));
 	}
 })
 
