@@ -1,8 +1,8 @@
-type ToDo {
+type Todo {
     id: ID!
     content: String!
 }
 
 type Query {
-    todos:[ToDo!]!
+    todos:[Todo!]!
 }

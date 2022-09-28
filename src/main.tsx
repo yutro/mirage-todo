@@ -5,14 +5,16 @@ import './index.css'
 
 import {QueryClientProvider, QueryClient} from '@tanstack/react-query'
 
-import './mockServer'
+import { createMockServer } from './mockServer'
 
 const client = new QueryClient()
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-<React.StrictMode>
-      <QueryClientProvider client={client}>
-          <App />
-      </QueryClientProvider>
-  </React.StrictMode>
-)
+createMockServer().then(() => {
+    ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+        <React.StrictMode>
+            <QueryClientProvider client={client}>
+                <App />
+            </QueryClientProvider>
+        </React.StrictMode>
+    )
+})
