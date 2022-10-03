@@ -1,6 +1,7 @@
 type Todo {
     id: ID!
     content: String!
+    list: List
 }
 
 type List {

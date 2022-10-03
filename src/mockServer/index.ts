@@ -1,26 +1,38 @@
 import { createGraphQLHandler } from "@miragejs/graphql";
-import {Server, Model, hasMany, belongsTo} from "miragejs";
+import {Server, Model, hasMany, belongsTo, Factory} from "miragejs";
 import {schema} from "../generated";
 
 export const createMockServer = async () => {
-	const mockServer =  new Server({
+	const mockServer = new Server({
 		routes() {
 			this.post("/graphql", createGraphQLHandler(schema, this.schema));
 		},
 		models: {
 			todo: Model.extend({
-				list: hasMany('lists')
+				list: belongsTo({
+					inverse: 'todos'
+				})
 			}),
 			list: Model.extend({
-				todo: belongsTo({
-					inverse: 'list'
-				})
+				todos: hasMany('todo'),
 			})
 		},
-		seeds(server) {
-			server.createList("todo", 2, {content: 'some todo'});
+		factories: {
+			todo: Factory.extend({
+				content: (index) => `todo content ${index}`
+			}),
+			list: Factory.extend({
+				title: (index) => `todo list ${index}`,
+			}),
 		},
-	});
+		seeds(server) {
+			server.createList("list", 1,{
+				todos: server.createList('todo', 5)
+			});
+			// to crete some todos not connected to any lists
+			server.createList("todo", 5);
+		},
+	})
 
 	// fast access in runtime for debugging
 	// @ts-expect-error //mockServer not exists on window
