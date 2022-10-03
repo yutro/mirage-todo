@@ -3,6 +3,13 @@ type Todo {
     content: String!
 }
 
+type List {
+    id: ID!
+    title: String!
+    todos: [Todo!]!
+}
+
 type Query {
     todos:[Todo!]!
+    lists: [List!]!
 }

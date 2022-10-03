@@ -1,5 +1,5 @@
 import { createGraphQLHandler } from "@miragejs/graphql";
-import { Server, Model } from "miragejs";
+import {Server, Model, hasMany, belongsTo} from "miragejs";
 import {schema} from "../generated";
 
 export const createMockServer = async () => {
@@ -8,7 +8,14 @@ export const createMockServer = async () => {
 			this.post("/graphql", createGraphQLHandler(schema, this.schema));
 		},
 		models: {
-			todo: Model
+			todo: Model.extend({
+				list: hasMany('lists')
+			}),
+			list: Model.extend({
+				todo: belongsTo({
+					inverse: 'list'
+				})
+			})
 		},
 		seeds(server) {
 			server.createList("todo", 2, {content: 'some todo'});
