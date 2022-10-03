@@ -26,10 +26,15 @@ export const createMockServer = async () => {
 			}),
 		},
 		seeds(server) {
-			server.createList("list", 1,{
+			// list with empty todos
+			server.create("list");
+
+			// list with some todos
+			server.create("list",{
 				todos: server.createList('todo', 5)
 			});
-			// to crete some todos not connected to any lists
+
+			// some todos not connected to any lists
 			server.createList("todo", 5);
 		},
 	})
