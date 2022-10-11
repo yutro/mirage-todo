@@ -1,28 +1,60 @@
-import React, {PropsWithChildren} from "react";
-import {useForm, UseFormReturn} from "react-hook-form";
-import {UseFormProps} from "react-hook-form/dist/types";
-import {FieldValues} from "react-hook-form/dist/types/fields";
-import {UseFormHandleSubmit} from "react-hook-form/dist/types/form";
+import React, { FormEvent, ReactNode } from "react";
+import {
+	DeepPartial,
+	FormProvider,
+	useForm,
+	UseFormReturn
+} from "react-hook-form";
+import { UseFormProps } from "react-hook-form/dist/types";
 
-type FormProps<FormValues extends Object, FormContext extends Object = {}> = PropsWithChildren<UseFormProps<FormValues>> & {
-    onSubmit: (formHandlers: UseFormReturn<FormValues, FormContext>) => UseFormHandleSubmit<FormValues>
-    onError?: (formHandlers: UseFormReturn<FormValues, FormContext>) => (formValues: FormValues) => void
-    context?: FormContext
-}
+export type TFormProps<TFormValues> = Omit<
+	UseFormProps<TFormValues>,
+	"defaultValues"
+> & {
+	stopPropagation?: boolean;
+	defaultValues?: DeepPartial<TFormValues>;
+	children:
+		| ReactNode
+		| ((formHandlers: UseFormReturn<TFormValues>) => ReactNode);
+} & (
+		| {
+				onSubmit: (formValues: TFormValues) => void;
+				curriedSubmit?: false;
+		  }
+		| {
+				onSubmit: (
+					formHandlers: UseFormReturn<TFormValues>,
+					defaultValues?: UseFormProps<TFormValues>["defaultValues"]
+				) => (formValues: TFormValues) => void;
+				curriedSubmit: true;
+		  }
+	);
 
-const Form = <FormValues extends FieldValues, FormContext>({
-  children,
-  onSubmit,
-  onError,
-  ...formProps
-}: FormProps<FormValues>): JSX.Element => {
-    const formHandlers = useForm(formProps)
+export const Form = <TFormValues,>({
+	children,
+	onSubmit,
+	curriedSubmit,
+	defaultValues,
+	stopPropagation,
+	...useFormProps
+}: TFormProps<TFormValues>): JSX.Element => {
+	const formHandlers = useForm<TFormValues>({ ...useFormProps, defaultValues });
 
-    return (
-        <form onSubmit={(e) => {
-            formHandlers.handleSubmit(onSubmit, )
-        }} onError={onError?.(formHandlers)} className="p-">
-            {children}
-        </form>
-    )
-}
+	const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+		if (stopPropagation) {
+			e.stopPropagation();
+		}
+
+		return curriedSubmit
+			? formHandlers.handleSubmit(onSubmit(formHandlers, defaultValues))(e)
+			: formHandlers.handleSubmit(onSubmit)(e);
+	};
+
+	return (
+		<FormProvider {...formHandlers}>
+			<form onSubmit={submitHandler}>
+				{typeof children === "function" ? children(formHandlers) : children}
+			</form>
+		</FormProvider>
+	);
+};
