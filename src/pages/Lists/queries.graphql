@@ -1,0 +1,6 @@
+query todoLists {
+    lists {
+        id
+        title
+    }
+}

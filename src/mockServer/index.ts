@@ -19,7 +19,9 @@ export const createMockServer = async () => {
 		},
 		factories: {
 			todo: Factory.extend({
-				content: (index) => `todo content ${index}`
+				title: (index) => `todo title ${index}`,
+				completed: (index) => index % 2 === 0,
+				content: (index) => index % 2 === 0 ? `todo content ${index}` : null
 			}),
 			list: Factory.extend({
 				title: (index) => `todo list ${index}`,

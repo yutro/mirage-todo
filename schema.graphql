@@ -1,6 +1,8 @@
 type Todo {
     id: ID!
-    content: String!
+    title: String!
+    content: String
+    completed: Boolean!
     list: List
 }
 
@@ -12,5 +14,7 @@ type List {
 
 type Query {
     todos:[Todo!]!
+    todo(id: ID!):Todo
     lists: [List!]!
+    list(id: ID!): List
 }
