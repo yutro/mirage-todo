@@ -8,7 +8,11 @@ import {
 
 import { TInputBaseProps } from "./types";
 
-type TextAreaFieldOwnProps<TDataType> = TInputBaseProps<TDataType>;
+type TextAreaFieldOwnProps<TDataType> = Pick<
+	JSX.IntrinsicElements["textarea"],
+	"rows" | "cols" | "onKeyUp" | "onKeyDown"
+> &
+	TInputBaseProps<TDataType>;
 
 export type TextAreaFieldProps<TDataType> = TextAreaFieldOwnProps<TDataType>;
 

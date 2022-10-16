@@ -1,4 +1,4 @@
-import React, { FormEvent, ReactNode } from "react";
+import React, { FormEvent, ReactNode, RefObject } from "react";
 
 import {
 	DeepPartial,
@@ -17,31 +17,39 @@ export type TFormProps<TFormValues extends FieldValues> = Omit<
 	defaultValues?: DeepPartial<TFormValues>;
 	onSubmit: (
 		formHandlers: UseFormReturn<TFormValues>,
-		defaultValues?: UseFormProps<TFormValues>["defaultValues"],
+		defaultValues: UseFormProps<TFormValues>["defaultValues"],
 	) => (formValues: TFormValues) => void;
 	children:
 		| ReactNode
-		| ((formHandlers: UseFormReturn<TFormValues>) => ReactNode);
+		| ((
+				formHandlers: UseFormReturn<TFormValues>,
+				defaultValues: UseFormProps<TFormValues>["defaultValues"],
+		  ) => ReactNode);
+	formTegProps?: Omit<JSX.IntrinsicElements["form"], "onSubmit">;
 };
 
 export const Form = <TFormValues extends FieldValues>({
 	children,
 	onSubmit,
 	defaultValues,
+	formTegProps,
 	...useFormProps
 }: TFormProps<TFormValues>): JSX.Element => {
 	const formHandlers = useForm<TFormValues>({ ...useFormProps, defaultValues });
-
 	const submitHandler = (e: FormEvent<HTMLFormElement>) => {
 		e.stopPropagation();
 
-		return formHandlers.handleSubmit(onSubmit(formHandlers, defaultValues))(e);
+		return formHandlers.handleSubmit(
+			onSubmit({ ...formHandlers }, defaultValues),
+		)(e);
 	};
 
 	return (
 		<FormProvider {...formHandlers}>
-			<form onSubmit={submitHandler}>
-				{typeof children === "function" ? children(formHandlers) : children}
+			<form {...formTegProps} onSubmit={submitHandler}>
+				{typeof children === "function"
+					? children({ ...formHandlers }, defaultValues)
+					: children}
 			</form>
 		</FormProvider>
 	);
