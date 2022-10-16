@@ -53,7 +53,7 @@ export const Lists = (): JSX.Element => {
 					</button>
 					<TextAreaField
 						name="task"
-						className="bg-gray-700 rounded mt-2 py-4 pr-3 pl-12 text-white w-full resize-y"
+						className="bg-gray-700 rounded mt-2 py-4 pr-3 pl-12 text-white w-full resize-y min-h-[56px]"
 						placeholder="Add task"
 						rows={1}
 					/>
