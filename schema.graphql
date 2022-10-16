@@ -18,3 +18,11 @@ type Query {
     lists: [List!]!
     list(id: ID!): List
 }
+
+input AddTodoMutationInput {
+    title: String!
+}
+
+type Mutation {
+    addToDo(input: AddTodoMutationInput!): Todo!
+}

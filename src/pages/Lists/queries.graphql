@@ -4,3 +4,10 @@ query todoLists {
 		title
 	}
 }
+
+mutation addToDo($input: AddTodoMutationInput!) {
+ 	addToDo(input: $input) {
+		id
+		title
+	}
+}

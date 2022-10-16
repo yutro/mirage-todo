@@ -2,15 +2,9 @@ import classNames from "classnames";
 import { Link } from "react-router-dom";
 
 import { useTodoListsQuery } from "../../generated";
-import {
-	H1,
-	Header,
-	Layout,
-	LayoutPreloader,
-	Form,
-	TextAreaField,
-} from "../../shared/components";
+import { H1, Header, Layout, LayoutPreloader } from "../../shared/components";
 import { routes } from "../../shared/const";
+import { AddTaskForm } from "./AddTaskForm";
 
 export const Lists = (): JSX.Element => {
 	const { data, error, isFetching } = useTodoListsQuery();
@@ -41,24 +35,7 @@ export const Lists = (): JSX.Element => {
 					</Link>
 				))}
 			</ul>
-			<Form
-				formTegProps={{ className: "mt-2" }}
-				onSubmit={() => formValues => {
-					console.log("-1-", formValues);
-				}}
-			>
-				<div className="relative">
-					<button className="material-symbols-outlined absolute top-5 left-2 text-indigo-400 p-1">
-						<span>add_task</span>
-					</button>
-					<TextAreaField
-						name="task"
-						className="bg-gray-700 rounded mt-2 py-4 pr-3 pl-12 text-white w-full resize-y min-h-[56px]"
-						placeholder="Add task"
-						rows={1}
-					/>
-				</div>
-			</Form>
+			<AddTaskForm />
 		</Layout>
 	);
 };
