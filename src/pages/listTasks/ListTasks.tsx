@@ -23,8 +23,8 @@ const ListTasks = (): JSX.Element => {
 						className={classNames(
 							"bg-gray-700 rounded py-4 px-3 flex content-center",
 							{
-								"mt-1": idx !== 0
-							}
+								"mt-1": idx !== 0,
+							},
 						)}
 					>
 						<button className="material-symbols-outlined">

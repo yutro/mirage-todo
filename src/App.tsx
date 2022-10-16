@@ -1,15 +1,15 @@
-import {Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 // import reactLogo from './assets/react.svg'
 // import './App.css'
-import {Lists} from "./pages";
-import {routes} from "./shared/const";
+import { Lists } from "./pages";
+import { routes } from "./shared/const";
 
 export const AppRoutes = (): JSX.Element => (
-    <Routes>
-        <Route path={routes.lists.base.relative} element={<Lists />} />
-    </Routes>
-)
+	<Routes>
+		<Route path={routes.lists.base.relative} element={<Lists />} />
+	</Routes>
+);
 
 // <div className="App mb-10">
 //     <div>

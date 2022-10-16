@@ -1,1 +1,1 @@
-export * from './descendantRoute'
+export * from "./descendantRoute";

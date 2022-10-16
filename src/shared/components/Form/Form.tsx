@@ -5,7 +5,7 @@ import {
 	FieldValues,
 	FormProvider,
 	useForm,
-	UseFormReturn
+	UseFormReturn,
 } from "react-hook-form";
 import { UseFormProps } from "react-hook-form/dist/types";
 
@@ -17,7 +17,7 @@ export type TFormProps<TFormValues extends FieldValues> = Omit<
 	defaultValues?: DeepPartial<TFormValues>;
 	onSubmit: (
 		formHandlers: UseFormReturn<TFormValues>,
-		defaultValues?: UseFormProps<TFormValues>["defaultValues"]
+		defaultValues?: UseFormProps<TFormValues>["defaultValues"],
 	) => (formValues: TFormValues) => void;
 	children:
 		| ReactNode

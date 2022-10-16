@@ -1,3 +1,3 @@
 export type TInputBaseProps<TDataType> = {
-  name: keyof TDataType
-}
+	name: keyof TDataType;
+};

@@ -26,8 +26,8 @@ export const Lists = (): JSX.Element => {
 							className={classNames(
 								"bg-gray-700 hover:bg-gray-800 rounded py-4 pr-3 text-white text-xs pl-4",
 								{
-									"mt-1": idx !== 0
-								}
+									"mt-1": idx !== 0,
+								},
 							)}
 						>
 							{title}

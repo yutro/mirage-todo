@@ -3,7 +3,7 @@ import {
 	FieldError,
 	FieldValues,
 	useController,
-	useFormContext
+	useFormContext,
 } from "react-hook-form";
 
 import { TInputBaseProps } from "./types";
@@ -23,7 +23,7 @@ export const TextAreaField = <TDataType,>({
 	const { field, fieldState } = useController<FieldValues>({
 		control,
 		name: name,
-		defaultValue: ""
+		defaultValue: "",
 	});
 
 	const fieldError = fieldState.error as unknown as FieldError | undefined;

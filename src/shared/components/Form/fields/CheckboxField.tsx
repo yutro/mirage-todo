@@ -24,7 +24,7 @@ export const CheckboxField = <TData,>({
 		control,
 		// @ts-expect-error library broken type
 		defaultValue: false,
-		name: name
+		name: name,
 	});
 
 	const fieldError = fieldState.error as unknown as FieldError | undefined;

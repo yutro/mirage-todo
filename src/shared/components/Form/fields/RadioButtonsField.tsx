@@ -3,7 +3,7 @@ import {
 	FieldError,
 	Path,
 	useController,
-	useFormContext
+	useFormContext,
 } from "react-hook-form";
 import { RegisterOptions } from "react-hook-form/dist/types/validator";
 
@@ -29,7 +29,7 @@ export const RadioButtonsField = <TData,>({
 	labelText,
 	config,
 	options,
-	defaultValue
+	defaultValue,
 }: TRadioButtonFieldProps<TData>): JSX.Element => {
 	if (typeof name !== "string")
 		throw new Error("RadioButtonsField: name must be string");
@@ -37,11 +37,11 @@ export const RadioButtonsField = <TData,>({
 	const { control } = useFormContext<TData>();
 	const {
 		field: { value, ...field },
-		fieldState
+		fieldState,
 	} = useController({
 		name,
 		control,
-		...{ ...config, defaultValue: defaultValue as never }
+		...{ ...config, defaultValue: defaultValue as never },
 	});
 
 	const fieldError = fieldState.error as unknown as FieldError | undefined;
