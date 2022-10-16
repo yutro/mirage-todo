@@ -1,39 +1,37 @@
-import React from 'react'
+import React from "react";
 import {
-  FieldError,
-  FieldValues,
-  useController,
-  useFormContext
-} from 'react-hook-form'
+	FieldError,
+	FieldValues,
+	useController,
+	useFormContext
+} from "react-hook-form";
 
-import { TInputBaseProps } from './types'
+import { TInputBaseProps } from "./types";
 
-type TextAreaFieldOwnProps<TDataType> = TInputBaseProps<TDataType>
+type TextAreaFieldOwnProps<TDataType> = TInputBaseProps<TDataType>;
 
-export type TextAreaFieldProps<TDataType> = TextAreaFieldOwnProps<TDataType>
+export type TextAreaFieldProps<TDataType> = TextAreaFieldOwnProps<TDataType>;
 
 export const TextAreaField = <TDataType,>({
-  name,
-  ...props
+	name,
+	...props
 }: TextAreaFieldProps<TDataType>): JSX.Element => {
-  const { control } = useFormContext()
-  const { field, fieldState } = useController<FieldValues>({
-    control,
-    name: name as string,
-    defaultValue: ''
-  })
+	if (typeof name !== "string")
+		throw new Error("TextAreaField: name must be string");
 
-  const fieldError = fieldState.error as unknown as FieldError | undefined
+	const { control } = useFormContext();
+	const { field, fieldState } = useController<FieldValues>({
+		control,
+		name: name,
+		defaultValue: ""
+	});
 
-  return (
-    <div>
-      <textarea
-          {...props}
-          {...field}
-      />
-      {fieldError?.message && (<span>
-        {fieldError.message}
-      </span>)}
-    </div>
-  )
-}
+	const fieldError = fieldState.error as unknown as FieldError | undefined;
+
+	return (
+		<fieldset>
+			<textarea {...props} {...field} />
+			{fieldError?.message && <span>{fieldError.message}</span>}
+		</fieldset>
+	);
+};

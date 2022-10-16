@@ -7,11 +7,14 @@
     "start": "vite --port=3000",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "codegen:generate": "graphql-codegen --config codegen.yml"
+    "codegen:generate": "graphql-codegen --config codegen.yml",
+    "prettier": "prettier --write src"
   },
   "dependencies": {
     "@tanstack/react-query": "4.2.3",
+
     "classnames": "2.3.2",
+    "lodash": "4.17.21",
     "path-browserify": "1.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -20,6 +23,7 @@
     "twind": "0.16.17"
   },
   "devDependencies": {
+    "@types/lodash": "4.14.186",
     "@graphql-codegen/cli": "2.12.0",
     "@graphql-codegen/named-operations-object": "2.3.1",
     "@graphql-codegen/near-operation-file-preset": "2.4.1",

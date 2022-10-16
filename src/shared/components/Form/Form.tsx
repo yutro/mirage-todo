@@ -1,53 +1,41 @@
 import React, { FormEvent, ReactNode } from "react";
+
 import {
 	DeepPartial,
+	FieldValues,
 	FormProvider,
 	useForm,
 	UseFormReturn
 } from "react-hook-form";
 import { UseFormProps } from "react-hook-form/dist/types";
 
-export type TFormProps<TFormValues> = Omit<
+export type TFormProps<TFormValues extends FieldValues> = Omit<
 	UseFormProps<TFormValues>,
 	"defaultValues"
 > & {
 	stopPropagation?: boolean;
 	defaultValues?: DeepPartial<TFormValues>;
+	onSubmit: (
+		formHandlers: UseFormReturn<TFormValues>,
+		defaultValues?: UseFormProps<TFormValues>["defaultValues"]
+	) => (formValues: TFormValues) => void;
 	children:
 		| ReactNode
 		| ((formHandlers: UseFormReturn<TFormValues>) => ReactNode);
-} & (
-		| {
-				onSubmit: (formValues: TFormValues) => void;
-				curriedSubmit?: false;
-		  }
-		| {
-				onSubmit: (
-					formHandlers: UseFormReturn<TFormValues>,
-					defaultValues?: UseFormProps<TFormValues>["defaultValues"]
-				) => (formValues: TFormValues) => void;
-				curriedSubmit: true;
-		  }
-	);
+};
 
-export const Form = <TFormValues,>({
+export const Form = <TFormValues extends FieldValues>({
 	children,
 	onSubmit,
-	curriedSubmit,
 	defaultValues,
-	stopPropagation,
 	...useFormProps
 }: TFormProps<TFormValues>): JSX.Element => {
 	const formHandlers = useForm<TFormValues>({ ...useFormProps, defaultValues });
 
 	const submitHandler = (e: FormEvent<HTMLFormElement>) => {
-		if (stopPropagation) {
-			e.stopPropagation();
-		}
+		e.stopPropagation();
 
-		return curriedSubmit
-			? formHandlers.handleSubmit(onSubmit(formHandlers, defaultValues))(e)
-			: formHandlers.handleSubmit(onSubmit)(e);
+		return formHandlers.handleSubmit(onSubmit(formHandlers, defaultValues))(e);
 	};
 
 	return (
