@@ -3,4 +3,5 @@ export * from "./MenuButton";
 export * from "./H1";
 export * from "./Header";
 export * from "./LayoutPreloader";
+export * from "./SectionPreloader";
 export * from "./Form";

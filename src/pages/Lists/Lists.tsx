@@ -3,7 +3,7 @@ import { AddToDoListForm } from "./AddToDoListForm";
 import { TaskLists } from "./TaskLists";
 
 export const Lists = (): JSX.Element => (
-	<Layout>
+	<Layout className="flex flex-col">
 		<Header>
 			<H1>Task Lists</H1>
 		</Header>

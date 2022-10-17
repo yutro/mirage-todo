@@ -7,7 +7,7 @@ export const AddToDoListForm = (): JSX.Element => {
 
 	return (
 		<Form<AddTodoListMutationInput>
-			formTegProps={{ className: "mt-2" }}
+			formTegProps={{ className: "mt-auto mb-2" }}
 			onSubmit={() => addTodoList}
 		>
 			<div className="relative">

@@ -1,13 +1,13 @@
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import { useTodoListsQuery } from "../../generated";
-import { LayoutPreloader } from "../../shared/components";
+import { SectionPreloader } from "../../shared/components";
 import { routes } from "../../shared/const";
 
 export const TaskLists = (): JSX.Element => {
 	const { data, error, isFetching } = useTodoListsQuery();
 
-	if (isFetching) return <LayoutPreloader />;
+	if (!isFetching) return <SectionPreloader />;
 
 	if (error) return <div>error</div>;
 	if (!data) return <div>No data</div>;

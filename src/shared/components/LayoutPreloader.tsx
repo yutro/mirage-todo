@@ -1,8 +1,13 @@
-import { Atom } from "./icons";
-import { Layout } from "./Layout";
+import classNames from "classnames";
+import { StyledAtom } from "./SectionPreloader";
+import { Layout, LayoutProps } from "./Layout";
 
-export const LayoutPreloader = (): JSX.Element => (
-	<Layout className="flex justify-center items-center">
-		<Atom classes={["h-10 animate-spin", "fill-current text-indigo-400"]} />
+type LayoutPreloaderProps = LayoutProps;
+
+export const LayoutPreloader = ({
+	className,
+}: LayoutPreloaderProps): JSX.Element => (
+	<Layout className={classNames("flex justify-center items-center", className)}>
+		<StyledAtom />
 	</Layout>
 );

@@ -1,11 +1,7 @@
 import classNames from "classnames";
 import { PropsWithChildren } from "react";
 
-export type LayoutOwnProps = {
-	className?: string;
-};
-
-export type LayoutProps = PropsWithChildren<LayoutOwnProps>;
+export type LayoutProps = PropsWithChildren<JSX.IntrinsicElements["div"]>;
 
 export const Layout = ({
 	children,
