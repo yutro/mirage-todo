@@ -13,7 +13,7 @@ export const createMockServer = async () => {
 					inverse: "todos",
 				}),
 			}),
-			list: Model.extend({
+			todoList: Model.extend({
 				todos: hasMany("todo"),
 			}),
 		},
@@ -23,16 +23,16 @@ export const createMockServer = async () => {
 				completed: index => index % 2 === 0,
 				content: index => (index % 2 === 0 ? `todo content ${index}` : null),
 			}),
-			list: Factory.extend({
+			todoList: Factory.extend({
 				title: index => `todo list ${index}`,
 			}),
 		},
 		seeds(server) {
 			// list with empty todos
-			server.create("list");
+			server.create("todoList");
 
 			// list with some todos
-			server.create("list", {
+			server.create("todoList", {
 				todos: server.createList("todo", 5),
 			});
 

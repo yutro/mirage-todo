@@ -5,8 +5,8 @@ query todoLists {
 	}
 }
 
-mutation addToDo($input: AddTodoMutationInput!) {
- 	addToDo(input: $input) {
+mutation addToDoList($input: AddTodoListMutationInput!) {
+ 	addToDoList(input: $input) {
 		id
 		title
 	}

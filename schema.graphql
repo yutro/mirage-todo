@@ -3,10 +3,10 @@ type Todo {
     title: String!
     content: String
     completed: Boolean!
-    list: List
+    list: TodoList
 }
 
-type List {
+type TodoList {
     id: ID!
     title: String!
     todos: [Todo!]!
@@ -15,8 +15,12 @@ type List {
 type Query {
     todos:[Todo!]!
     todo(id: ID!):Todo
-    lists: [List!]!
-    list(id: ID!): List
+    lists: [TodoList!]!
+    list(id: ID!): TodoList
+}
+
+input AddTodoListMutationInput {
+    title: String!
 }
 
 input AddTodoMutationInput {
@@ -24,5 +28,6 @@ input AddTodoMutationInput {
 }
 
 type Mutation {
+    addToDoList(input: AddTodoListMutationInput!): TodoList!
     addToDo(input: AddTodoMutationInput!): Todo!
 }

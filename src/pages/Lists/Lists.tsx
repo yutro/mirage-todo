@@ -1,41 +1,13 @@
-import classNames from "classnames";
-import { Link } from "react-router-dom";
+import { H1, Header, Layout } from "../../shared/components";
+import { AddToDoListForm } from "./AddToDoListForm";
+import { TaskLists } from "./TaskLists";
 
-import { useTodoListsQuery } from "../../generated";
-import { H1, Header, Layout, LayoutPreloader } from "../../shared/components";
-import { routes } from "../../shared/const";
-import { AddTaskForm } from "./AddTaskForm";
-
-export const Lists = (): JSX.Element => {
-	const { data, error, isFetching } = useTodoListsQuery();
-
-	if (isFetching) return <LayoutPreloader />;
-
-	if (error) return <div>error</div>;
-	if (!data) return <div>No data</div>;
-
-	return (
-		<Layout>
-			<Header>
-				<H1>Task Lists</H1>
-			</Header>
-			<ul>
-				{data.lists.map(({ id, title }, idx) => (
-					<Link key={id} to={routes.lists.byId.absolute(id)}>
-						<li
-							className={classNames(
-								"bg-gray-700 hover:bg-gray-800 rounded py-4 pr-3 text-white text-xs pl-4",
-								{
-									"mt-1": idx !== 0,
-								},
-							)}
-						>
-							{title}
-						</li>
-					</Link>
-				))}
-			</ul>
-			<AddTaskForm />
-		</Layout>
-	);
-};
+export const Lists = (): JSX.Element => (
+	<Layout>
+		<Header>
+			<H1>Task Lists</H1>
+		</Header>
+		<TaskLists />
+		<AddToDoListForm />
+	</Layout>
+);

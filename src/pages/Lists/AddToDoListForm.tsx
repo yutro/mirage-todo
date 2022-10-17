@@ -1,24 +1,23 @@
-import { AddTodoMutationInput, useAddToDoMutation } from "../../generated";
+import { AddTodoListMutationInput } from "../../generated";
 import { Form, TextAreaField } from "../../shared/components";
+import { useAddTodoList } from "./useAddTodoList";
 
-export const AddTaskForm = (): JSX.Element => {
-	const addToDoMutation = useAddToDoMutation();
+export const AddToDoListForm = (): JSX.Element => {
+	const addTodoList = useAddTodoList();
 
 	return (
-		<Form<AddTodoMutationInput>
+		<Form<AddTodoListMutationInput>
 			formTegProps={{ className: "mt-2" }}
-			onSubmit={() => formValues => {
-				addToDoMutation.mutate({ input: formValues });
-			}}
+			onSubmit={() => addTodoList}
 		>
 			<div className="relative">
 				<button className="material-symbols-outlined absolute top-5 left-2 text-indigo-400 p-1">
-					<span>add_task</span>
+					<span>add_circle</span>
 				</button>
-				<TextAreaField
-					name="task"
+				<TextAreaField<AddTodoListMutationInput>
+					name="title"
 					className="bg-gray-700 rounded mt-2 py-4 pr-3 pl-12 text-white w-full resize-y min-h-[56px]"
-					placeholder="Add task"
+					placeholder="Add list"
 					rows={1}
 				/>
 			</div>

@@ -8,34 +8,17 @@ import {
 	UseFormReturn,
 } from "react-hook-form";
 import { UseFormProps } from "react-hook-form/dist/types";
+import { FormProps } from "./Form.types";
 
-export type TFormProps<TFormValues extends FieldValues> = Omit<
-	UseFormProps<TFormValues>,
-	"defaultValues"
-> & {
-	stopPropagation?: boolean;
-	defaultValues?: DeepPartial<TFormValues>;
-	onSubmit: (
-		formHandlers: UseFormReturn<TFormValues>,
-		defaultValues: UseFormProps<TFormValues>["defaultValues"],
-	) => (formValues: TFormValues) => void;
-	children:
-		| ReactNode
-		| ((
-				formHandlers: UseFormReturn<TFormValues>,
-				defaultValues: UseFormProps<TFormValues>["defaultValues"],
-		  ) => ReactNode);
-	formTegProps?: Omit<JSX.IntrinsicElements["form"], "onSubmit">;
-};
-
-export const Form = <TFormValues extends FieldValues>({
+export const Form = <FormValues extends FieldValues>({
 	children,
 	onSubmit,
 	defaultValues,
 	formTegProps,
 	...useFormProps
-}: TFormProps<TFormValues>): JSX.Element => {
-	const formHandlers = useForm<TFormValues>({ ...useFormProps, defaultValues });
+}: FormProps<FormValues>): JSX.Element => {
+	const formHandlers = useForm<FormValues>({ ...useFormProps, defaultValues });
+
 	const submitHandler = (e: FormEvent<HTMLFormElement>) => {
 		e.stopPropagation();
 
