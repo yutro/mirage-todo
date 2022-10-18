@@ -2,12 +2,16 @@ import { Route, Routes } from "react-router-dom";
 
 // import reactLogo from './assets/react.svg'
 // import './App.css'
-import { Lists } from "./pages";
+import { ListsRouting } from "./pages/Lists";
 import { routes } from "./shared/const";
+import { descendantRoute } from "./shared/utils";
 
 export const AppRoutes = (): JSX.Element => (
 	<Routes>
-		<Route path={routes.lists.base.relative} element={<Lists />} />
+		<Route
+			path={descendantRoute(routes.lists.base.relative)}
+			element={<ListsRouting />}
+		/>
 	</Routes>
 );
 

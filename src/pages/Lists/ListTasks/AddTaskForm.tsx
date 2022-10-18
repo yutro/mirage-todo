@@ -1,5 +1,5 @@
-import { AddTodoMutationInput } from "../../generated";
-import { Form, TextAreaField } from "../../shared/components";
+import { AddTodoMutationInput } from "../../../generated";
+import { Form, TextAreaField } from "../../../shared/components";
 
 export const AddTaskForm = (): JSX.Element => {
 	return (

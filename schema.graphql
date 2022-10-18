@@ -13,10 +13,9 @@ type TodoList {
 }
 
 type Query {
-    todos:[Todo!]!
     todo(id: ID!):Todo
     lists: [TodoList!]!
-    list(id: ID!): TodoList
+    todoList(id: ID!): TodoList
 }
 
 input AddTodoListMutationInput {
@@ -30,4 +29,6 @@ input AddTodoMutationInput {
 type Mutation {
     addToDoList(input: AddTodoListMutationInput!): TodoList!
     addToDo(input: AddTodoMutationInput!): Todo!
+    removeToDo(id: ID!): Boolean!
+    removeToDoList(id: ID!): Boolean!
 }

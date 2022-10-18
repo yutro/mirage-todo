@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./App";
-import formsPlugin from "@tailwindcss/forms";
 
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 

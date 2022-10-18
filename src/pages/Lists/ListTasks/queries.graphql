@@ -1,0 +1,18 @@
+query todoListById($listId: ID!) {
+	todoList(id: $listId) {
+		id
+		title
+		todos {
+			id
+			title
+			completed
+		}
+	}
+}
+
+mutation addToDo($input: AddTodoMutationInput!) {
+ 	addToDo(input: $input) {
+		id
+		title
+	}
+}

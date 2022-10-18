@@ -30,8 +30,8 @@ export const routes = {
 		},
 		byId: {
 			relative: ":taskId",
-			absolute: (taskId: ":taskId") =>
-				join(routes.tasks.base.absolute(), routes.tasks.byId.relative, taskId),
+			absolute: (taskId = ":taskId") =>
+				join(routes.tasks.base.absolute(), taskId),
 		},
 		create: {
 			relative: "create",
