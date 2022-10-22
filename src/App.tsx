@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, redirect, Navigate } from "react-router-dom";
 
 // import reactLogo from './assets/react.svg'
 // import './App.css'
@@ -11,6 +11,10 @@ export const AppRoutes = (): JSX.Element => (
 		<Route
 			path={descendantRoute(routes.lists.base.relative)}
 			element={<ListsRouting />}
+		/>
+		<Route
+			path="/"
+			element={<Navigate to={routes.lists.base.relative} replace />}
 		/>
 	</Routes>
 );
