@@ -3,7 +3,7 @@ type Todo {
     title: String!
     content: String
     completed: Boolean!
-    list: TodoList
+    todoList: TodoList
 }
 
 type TodoList {
@@ -24,6 +24,7 @@ input AddTodoListMutationInput {
 
 input AddTodoMutationInput {
     title: String!
+    todoListId: ID
 }
 
 type Mutation {

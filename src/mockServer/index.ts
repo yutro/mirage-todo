@@ -5,11 +5,26 @@ import { schema } from "../generated";
 export const createMockServer = async () => {
 	const mockServer = new Server({
 		routes() {
-			this.post("/graphql", createGraphQLHandler(schema, this.schema));
+			this.post(
+				"/graphql",
+				createGraphQLHandler(schema, this.schema, {
+					context: undefined,
+					root: undefined,
+					resolvers: {
+						Mutation: {
+							addToDo: (_, { input }) =>
+								mockServer.schema.todos.create({
+									...input,
+									completed: false,
+								}),
+						},
+					},
+				}),
+			);
 		},
 		models: {
 			todo: Model.extend({
-				list: belongsTo({
+				todoList: belongsTo({
 					inverse: "todos",
 				}),
 			}),
