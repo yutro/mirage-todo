@@ -5,3 +5,4 @@ export * from "./Header";
 export * from "./LayoutPreloader";
 export * from "./SectionPreloader";
 export * from "./Form";
+export * from "./AddForm";
