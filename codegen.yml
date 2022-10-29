@@ -21,6 +21,7 @@ generates:
     plugins:
       - typescript
       - typescript-operations
+      - typescript-resolvers
       - named-operations-object
       - typescript-react-query
     config:
