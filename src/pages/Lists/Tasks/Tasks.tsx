@@ -1,8 +1,6 @@
-import { useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
 import { Link, useParams } from "react-router-dom";
 import {
-	namedOperations,
 	useDeleteToDoListMutation,
 	useDeleteToDoMutation,
 	useTodoListByIdQuery,
@@ -11,7 +9,6 @@ import {
 	H1,
 	Header,
 	Layout,
-	LayoutPreloader,
 	SectionPreloader,
 } from "../../../shared/components";
 import { routes } from "../../../shared/const";
@@ -21,8 +18,6 @@ export const Tasks = (): JSX.Element => {
 	const { listId } = useParams();
 
 	if (!listId) throw new Error("Tasks: required listId is missing");
-
-	const queryClient = useQueryClient();
 
 	const { data, error, isFetching, refetch } = useTodoListByIdQuery({ listId });
 	const { mutate: deleteToDoListById } = useDeleteToDoListMutation();
