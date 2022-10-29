@@ -2,8 +2,8 @@ import type { Server as ServerType } from "miragejs";
 import { FactoryDefinition, ModelDefinition, Registry } from "miragejs/-types";
 import { ServerConfig } from "miragejs/server";
 
-import { ResolversParentTypes } from "../generated";
-import { OmitGQLServiceTypes, UncapitalizeKeys } from "../shared/utils";
+import { ResolversParentTypes } from "generated";
+import { OmitGQLServiceTypes, UncapitalizeKeys } from "shared/utils";
 
 type MockServerModels = {
 	[k in UncapitalizeKeys<

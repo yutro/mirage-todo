@@ -22,7 +22,6 @@
     "twind": "0.16.17"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.186",
     "@graphql-codegen/cli": "2.12.0",
     "@graphql-codegen/named-operations-object": "2.3.1",
     "@graphql-codegen/near-operation-file-preset": "2.4.1",
@@ -31,6 +30,7 @@
     "@graphql-codegen/typescript-react-query": "4.0.1",
     "@graphql-codegen/typescript-resolvers": "2.7.3",
     "@miragejs/graphql": "0.1.13",
+    "@types/lodash": "4.14.186",
     "@types/path-browserify": "1.0.0",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
@@ -38,6 +38,8 @@
     "miragejs": "0.1.45",
     "prettier": "2.7.1",
     "typescript": "4.8.2",
-    "vite": "3.0.9"
+    "vite": "3.0.9",
+    "vite-tsconfig-paths": "3.5.2",
+    "vitest": "0.24.3"
   }
 }

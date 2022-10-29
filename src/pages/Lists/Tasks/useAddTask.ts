@@ -4,8 +4,8 @@ import {
 	AddTodoMutationInput,
 	namedOperations,
 	useAddToDoMutation,
-} from "../../../generated";
-import { FormHandlers } from "../../../shared/components";
+} from "generated";
+import { FormHandlers } from "shared/components";
 
 type AddTaskFormValues = Pick<AddTodoMutationInput, "title">;
 

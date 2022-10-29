@@ -1,4 +1,4 @@
-import { AddForm } from "../../shared/components";
+import { AddForm } from "shared/components";
 import { useAddTodoList } from "./useAddTodoList";
 
 export const AddToDoListForm = (): JSX.Element => (
