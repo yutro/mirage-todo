@@ -1,8 +1,10 @@
-export type AtomProps = Readonly<{
-	classes?: readonly [className?: string, pathClassName?: string];
-}>;
+export type AtomProps = Readonly<
+	{
+		classes?: readonly [className?: string, pathClassName?: string];
+	} & JSX.IntrinsicElements["svg"]
+>;
 
-export const Atom = ({ classes }: AtomProps): JSX.Element => {
+export const Atom = ({ classes, ...props }: AtomProps): JSX.Element => {
 	const [className, pathClassName] = classes || [];
 
 	return (
@@ -11,6 +13,7 @@ export const Atom = ({ classes }: AtomProps): JSX.Element => {
 			aria-hidden="true"
 			viewBox="0 0 256 228"
 			className={className}
+			{...props}
 		>
 			<path
 				fill="#00D8FF"

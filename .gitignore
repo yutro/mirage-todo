@@ -23,4 +23,5 @@ src/generated
 *.njsproj
 *.sln
 *.sw?
+coverage
 
