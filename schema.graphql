@@ -30,6 +30,6 @@ input AddTodoMutationInput {
 type Mutation {
     addToDoList(input: AddTodoListMutationInput!): TodoList!
     addToDo(input: AddTodoMutationInput!): Todo!
-    removeToDo(id: ID!): Boolean!
-    removeToDoList(id: ID!): Boolean!
+    removeToDo(id: ID!): Todo!
+    removeToDoList(id: ID!): TodoList!
 }

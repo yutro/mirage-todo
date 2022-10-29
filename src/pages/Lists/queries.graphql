@@ -11,3 +11,9 @@ mutation addToDoList($input: AddTodoListMutationInput!) {
 		title
 	}
 }
+
+mutation deleteToDoList($id: ID!) {
+	removeToDoList(id: $id) {
+		id
+	}
+}

@@ -16,3 +16,9 @@ mutation addToDo($input: AddTodoMutationInput!) {
 		title
 	}
 }
+
+mutation deleteToDO($id: ID!) {
+	removeToDo(id: $id) {
+		id
+	}
+}
