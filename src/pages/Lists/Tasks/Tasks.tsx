@@ -4,14 +4,9 @@ import {
 	useDeleteToDoListMutation,
 	useDeleteToDoMutation,
 	useTodoListByIdQuery,
-} from "../../../generated";
-import {
-	H1,
-	Header,
-	Layout,
-	SectionPreloader,
-} from "../../../shared/components";
-import { routes } from "../../../shared/const";
+} from "generated";
+import { H1, Header, Layout, SectionPreloader } from "shared/components";
+import { routes } from "shared/const";
 import { AddTaskForm } from "./AddTaskForm";
 
 export const Tasks = (): JSX.Element => {

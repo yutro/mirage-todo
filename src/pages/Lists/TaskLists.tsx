@@ -4,13 +4,18 @@ import { useTodoListsQuery } from "../../generated";
 import { SectionPreloader } from "../../shared/components";
 import { routes } from "../../shared/const";
 
+export const TEXT_TaskLists = {
+	error: "error while loading tasks lists",
+	noData: "No data",
+};
+
 export const TaskLists = (): JSX.Element => {
 	const { data, error, isFetching } = useTodoListsQuery();
 
 	if (isFetching) return <SectionPreloader />;
 
-	if (error) return <div>error</div>;
-	if (!data) return <div>No data</div>;
+	if (error) return <div>{TEXT_TaskLists.error}</div>;
+	if (!data) return <div>{TEXT_TaskLists.noData}</div>;
 
 	return (
 		<ul>

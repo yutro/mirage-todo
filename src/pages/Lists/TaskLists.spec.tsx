@@ -1,10 +1,14 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { createMockServer, MockServerType } from "mockServer";
+import { MOCK_SERVER_HOST } from "../../mockServer/mockServerConfig";
+import { Response } from "miragejs";
+import { createErrorResponse } from "../../mockServer/utils/createErrorResponse";
+
 import {
 	APIDataProvider,
 	TEXT_SectionPreloader,
 } from "../../shared/components";
-import { TaskLists } from "./TaskLists";
+import { TaskLists, TEXT_TaskLists } from "./TaskLists";
 
 let mockServer: MockServerType;
 
@@ -37,6 +41,19 @@ describe("TaskLists", () => {
 
 		waitFor(() =>
 			expect(screen.getByText(todoList.attrs.title)).toBeInTheDocument(),
+		);
+	});
+
+	it("should render error text when API throws an exception", () => {
+		renderTestComponent();
+
+		mockServer.post(
+			MOCK_SERVER_HOST,
+			createErrorResponse(["server went on vacation"]),
+		);
+
+		waitFor(() =>
+			expect(screen.getByText(TEXT_TaskLists.error)).toBeInTheDocument(),
 		);
 	});
 });
