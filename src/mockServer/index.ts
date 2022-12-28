@@ -1,16 +1,6 @@
 import { createServer } from "miragejs";
 import { createGraphQLHandler } from "@miragejs/graphql";
-
-const schema = `
-type Todo {
-  id: ID!
-  content: String!
-}
-
-type Query {
-     todos: [Todo!]!
-}
-`;
+import { schema } from "../generated";
 
 const mockServer = createServer({
   routes() {

@@ -1,0 +1,8 @@
+type Todo {
+    id: ID!
+    content: String!
+}
+
+type Query {
+    todos: [Todo!]!
+}
