@@ -22,6 +22,7 @@ const mockServer = createServer<MockServerModels, MockServerFactories>({
     todo: Factory.extend({
       id: (idx) => idx,
       content: (idx) => `${idx} - some content`,
+      completed: (n) => n % 2 === 0,
     }),
   },
 });

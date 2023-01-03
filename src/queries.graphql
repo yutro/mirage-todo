@@ -2,5 +2,12 @@ query getTodos {
     todos {
         id
         content
+        completed
+    }
+}
+
+mutation addTodo($input: AddTodoMutationInput!) {
+    addTodo(input: $input) {
+        id
     }
 }

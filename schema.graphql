@@ -1,8 +1,17 @@
 type Todo {
     id: ID!
     content: String!
+    completed: Boolean!
 }
 
 type Query {
     todos: [Todo!]!
+}
+
+input AddTodoMutationInput {
+    content: String!
+}
+
+type Mutation {
+    addTodo(input: AddTodoMutationInput! ): Todo!
 }

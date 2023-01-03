@@ -1,38 +1,22 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
-import { useGetTodosQuery } from "./generated";
+import { TodoList } from "./components/TodoList";
 
-function App() {
-  const [count, setCount] = useState(0);
-  const x = useGetTodosQuery();
-
-  console.log("query response", x);
-
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+const App = (): JSX.Element => (
+  <div className="flex justify-center items-center min-h-screen">
+    <main>
+      <h1 className="text-4xl font-bold">Mirage ToDo</h1>
+      <TodoList />
+      <form className="mt-10">
+        <input
+          type="text"
+          placeholder="Type todo text here"
+          className="border indent-1 mr-2"
+        />
+        <button type="submit" className="border px-2">
+          Add
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  );
-}
+      </form>
+    </main>
+  </div>
+);
 
 export default App;
