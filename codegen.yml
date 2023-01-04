@@ -25,7 +25,7 @@ generates:
       - typescript-react-query
     config:
       fetcher:
-        endpoint: 'http://localhost:5173/graphql'
+        endpoint: 'http://localhost:5000/graphql'
       skipTypename: true
       useTypeImports: true
       immutableTypes: true

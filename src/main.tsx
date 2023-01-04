@@ -1,17 +1,19 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-import "./mockServer";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { createMockServer } from "./mockServer";
+import { ApiDataProvider } from "./components/ApiDataProvider";
 
-const client = new QueryClient();
+if (import.meta.env.DEV) {
+  createMockServer();
+}
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <QueryClientProvider client={client}>
+    <ApiDataProvider>
       <App />
-    </QueryClientProvider>
+    </ApiDataProvider>
   </React.StrictMode>
 );
