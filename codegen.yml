@@ -23,6 +23,7 @@ generates:
       - typescript-operations
       - named-operations-object
       - typescript-react-query
+      - typescript-resolvers
     config:
       fetcher:
         endpoint: 'http://localhost:5000/graphql'
